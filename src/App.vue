@@ -1,16 +1,14 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
+import SuppliersList from "./components/SuppliersList.vue";
+import SuppliersMap from "./components/SuppliersMap.vue";
 
 function onSuppliersListClick() {
   alert("la liste des fournisseurs")
-};
+}
 function onMapClick() {
   alert("afficher la carte")
-};
-
-
-
+}
 
 </script>
 
@@ -22,6 +20,8 @@ function onMapClick() {
   </header>
 
   <main>
+    <SuppliersList/>
+    <SuppliersMap/>
   </main>
 </template>
 
