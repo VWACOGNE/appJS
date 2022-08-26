@@ -30,6 +30,18 @@ export default {
       zoom: 2,
       iconWidth: 25,
       iconHeight: 40,
+      suppliers: [
+        {
+          id: 1,
+          latitude: 10,
+          longitude: 10
+        },
+        {
+          id: 2,
+          latitude: 11,
+          longitude: 9.6
+        }
+      ],
     };
   },
   computed: {
@@ -68,11 +80,11 @@ export default {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         ></l-tile-layer>
         <l-control-layers />
-<!--        <l-marker :lat-lng="[0, 0]" draggable @moveend="log('moveend')">-->
-<!--          <l-tooltip>-->
-<!--            lol-->
-<!--          </l-tooltip>-->
-<!--        </l-marker>-->
+        <l-marker v-for="supplier in suppliers" :lat-lng="[supplier.latitude, supplier.longitude]" draggable @moveend="log('moveend')">
+          <l-tooltip>
+            lol
+          </l-tooltip>
+        </l-marker>
 
 <!--        <l-marker :lat-lng="[47.41322, -1.219482]">-->
 <!--          <l-icon :icon-url="iconUrl" :icon-size="iconSize" />-->
