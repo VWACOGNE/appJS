@@ -1,35 +1,40 @@
 <script>
 import Supplier from "./Supplier.vue";
+import axios from "axios";
 
 export default {
   components: {Supplier},
 
   data() {
     return {
-      suppliers: [
-        {
-          id: 1,
-          name: "Fournisseur 1 ?",
-          status: true,
-          checkedAt: new Date()
-        },
-        {
-          id: 2,
-          name: "Fournisseur 2",
-          status: false,
-          checkedAt: new Date()
-        }
-      ]
+      suppliers: [],
+      loading: true,
+      errored: false,
     }
-  }
+  },
+
+  mounted() {
+    axios
+        .get(
+            "https://heroku-campus-suppliers.herokuapp.com/api/suppliers"
+        )
+        .then((response) => {
+          this.suppliers = response.data.data
+          console.log(this.suppliers)
+        })
+        .catch((error) => {
+          console.log(error);
+          this.errored = true;
+        })
+        .finally(() => (this.loading = false));
+  },
 }
 
 </script>
-
 <template>
   <Supplier
       v-for="supplier in suppliers"
-      :key="supplier"
+      :key="supplier.id"
       :supplier="supplier"
   />
 </template>

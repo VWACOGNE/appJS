@@ -9,7 +9,7 @@ import './assets/main.css'
 const routes = [
     { path: "/suppliers", component: SuppliersList },
     { path: "/map", component: SuppliersMap },
-    // { path: "/supplier", component: Supplier },
+    { path: "/", redirect:"/suppliers" },
 ];
 
 const router = createRouter({
