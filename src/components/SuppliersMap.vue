@@ -70,11 +70,8 @@ export default {
       }
     },
   },
-
 };
 </script>
-
-
   <template>
     <h1>Carte des fournisseurs</h1>
     <div style="height: 75vh; width: 50vw;">
@@ -82,8 +79,7 @@ export default {
           v-model="zoom"
           v-model:zoom="zoom"
           :center="[47.41322, -1.219482]"
-          @move="log('move')"
-      >
+          @move="log('move')">
         <l-tile-layer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         ></l-tile-layer>

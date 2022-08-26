@@ -11,7 +11,6 @@ export default {
       loading: true,
       errored: false,
     }
-
   },
 
   mounted() {
@@ -29,11 +28,9 @@ export default {
         })
         .finally(() => (this.loading = false));
   },
-
 }
 
 </script>
-
 <template>
   <Supplier
       v-for="supplier in suppliers"
