@@ -12,6 +12,7 @@ import {
   LRectangle,
 } from "@vue-leaflet/vue-leaflet";
 import "leaflet/dist/leaflet.css";
+import axios from "axios";
 export default {
   components: {
     LMap,
@@ -30,19 +31,25 @@ export default {
       zoom: 2,
       iconWidth: 25,
       iconHeight: 40,
-      suppliers: [
-        {
-          id: 1,
-          latitude: 10,
-          longitude: 10
-        },
-        {
-          id: 2,
-          latitude: 11,
-          longitude: 9.6
-        }
-      ],
+      suppliers: [],
+      loading: true,
+      errored: false,
     };
+  },
+  mounted() {
+    axios
+        .get(
+            "https://heroku-campus-suppliers.herokuapp.com/api/suppliers"
+        )
+        .then((response) => {
+          this.suppliers = response.data.data
+          console.log(this.suppliers)
+        })
+        .catch((error) => {
+          console.log(error);
+          this.errored = true;
+        })
+        .finally(() => (this.loading = false));
   },
   computed: {
     iconUrl() {
@@ -63,6 +70,7 @@ export default {
       }
     },
   },
+
 };
 </script>
 
@@ -82,7 +90,7 @@ export default {
         <l-control-layers />
         <l-marker v-for="supplier in suppliers" :lat-lng="[supplier.latitude, supplier.longitude]" draggable @moveend="log('moveend')">
           <l-tooltip>
-            lol
+            {{supplier.name}}
           </l-tooltip>
         </l-marker>
       </l-map>

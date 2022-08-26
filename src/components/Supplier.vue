@@ -7,7 +7,7 @@ const props = defineProps({
 })
 
 let time = ref(new Date());
-setInterval(updatedDate, 200);
+setInterval(updatedDate, 2000);
 function updatedDate(){
   time.value = new Date();
   console.log("je suis du tex")
